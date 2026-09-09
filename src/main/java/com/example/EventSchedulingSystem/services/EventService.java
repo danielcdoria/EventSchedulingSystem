@@ -41,7 +41,7 @@ public class EventService {
 
     public List<EventResponseDto> list(){
         User user = getLoogedUser();
-        return eventRepository.findByUser(user)
+        return eventRepository.findByUserList(user)
                 .stream()
                 .map(this::convertToDto)
                 .toList();
@@ -58,6 +58,7 @@ public class EventService {
         );
         eventRepository.save(event);
         user.getEventList().add(event);
+        userRepository.save(user);
         return convertToDto(event);
     }
 
@@ -65,7 +66,7 @@ public class EventService {
         User user = getLoogedUser();
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
-        if (!user.getId().equals(event.getId())){
+        if (!user.getEventList().contains(event)){
             throw new IllegalArgumentException("Acess denied");
         }
         return convertToDto(event);
@@ -75,7 +76,7 @@ public class EventService {
         User user = getLoogedUser();
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
-        if (!user.getId().equals(event.getId())){
+        if (!user.getEventList().contains(event)){
             throw new IllegalArgumentException("Acess denied.");
         }
         eventRepository.delete(event);
@@ -84,7 +85,7 @@ public class EventService {
 
     public List<EventResponseDto> findByLocation(String location){
         User user = getLoogedUser();
-        return eventRepository.findByUserAndLocation(user, location)
+        return eventRepository.findByUserListAndLocation(user, location)
                 .stream()
                 .map(this::convertToDto)
                 .toList();
@@ -92,7 +93,7 @@ public class EventService {
 
     public List<EventResponseDto> findByStatus(Event.EventStatus status){
         User user = getLoogedUser();
-        return eventRepository.findByUserAndStatus(user, status)
+        return eventRepository.findByUserListAndStatus(user, status)
                 .stream()
                 .map(this::convertToDto)
                 .toList();

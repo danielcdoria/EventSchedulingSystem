@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
-    List<Event> findByUser(User user);
-    List<Event> findByUserAndLocation(User user, String location);
-    List<Event> findByUserAndStatus(User user, Event.EventStatus status);
+    List<Event> findByUserList(User user);
+    List<Event> findByUserListAndLocation(User user, String location);
+    List<Event> findByUserListAndStatus(User user, Event.EventStatus status);
 }
