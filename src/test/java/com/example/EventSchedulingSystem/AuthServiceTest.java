@@ -65,7 +65,7 @@ public class AuthServiceTest {
         LoginRequestDto dto = new LoginRequestDto("daniel@gmail.com", "senha123");
         when(repository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(new User()));
         when(passwordEncoder.matches(any(String.class), any(String.class))).thenReturn(true);
-        when(jwtUtil.generateToken("daniel@gmail.com")).thenReturn("token-fake");
+        when(jwtUtil.generateToken(any())).thenReturn("token-fake");
 
         AuthResponseDto result = service.login(dto);
 
@@ -79,13 +79,13 @@ public class AuthServiceTest {
 
         assertThatThrownBy(() -> service.login(dto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("User not found");
+                .hasMessage("Password or Email incorrect.");
     }
 
     @Test
     public void login_whenPassDoesNotMatches_throwsException(){
         LoginRequestDto dto = new LoginRequestDto("daniel@gmail.com", "senha123");
-        when(repository.findByEmail("daniel@gmail.com")).thenReturn(Optional.empty());
+        when(repository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(new User()));
         when(passwordEncoder.matches(any(String.class), any(String.class) )).thenReturn(false);
 
         assertThatThrownBy(() -> service.login(dto))
