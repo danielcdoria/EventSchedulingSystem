@@ -31,6 +31,8 @@ public class User implements UserDetails {
         ADMIN, USER
     }
 
+    public User(){}
+
     public User(String name,
                 String email,
                 String password,

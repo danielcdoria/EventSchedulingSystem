@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequestDto {
     @Email(message = "Email must have @ and .com")
-    private String Email;
+    private String email;
     @NotBlank(message = "Password cannot be blank")
     private String password;
 
@@ -14,6 +14,6 @@ public class LoginRequestDto {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 }

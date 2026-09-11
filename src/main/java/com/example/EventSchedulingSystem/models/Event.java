@@ -23,6 +23,8 @@ public class Event {
         UPCOMING, IN_PROGRESS, FINISHED, CANCELLED
     }
 
+    public Event(){}
+
     public Event(String title,
                  String description,
                  String location,
