@@ -44,6 +44,9 @@ public class AuthService {
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())){
             throw new IllegalArgumentException("Password or Email incorrect.");
         }
+        if (!repository.findByEmail(dto.getEmail()).isPresent()){
+            throw new IllegalArgumentException("User not found");
+        }
         String token = jwtUtil.generateToken(user.getEmail());
         return new AuthResponseDto(token);
     }
