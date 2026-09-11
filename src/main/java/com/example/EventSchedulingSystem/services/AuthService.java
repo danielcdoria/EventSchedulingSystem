@@ -1,8 +1,8 @@
 package com.example.EventSchedulingSystem.services;
 
-import com.example.EventSchedulingSystem.Dtos.authDtos.AuthResponseDto;
-import com.example.EventSchedulingSystem.Dtos.authDtos.LoginRequestDto;
-import com.example.EventSchedulingSystem.Dtos.authDtos.RegisterRequestDto;
+import com.example.EventSchedulingSystem.dtos.authDtos.AuthResponseDto;
+import com.example.EventSchedulingSystem.dtos.authDtos.LoginRequestDto;
+import com.example.EventSchedulingSystem.dtos.authDtos.RegisterRequestDto;
 import com.example.EventSchedulingSystem.models.User;
 import com.example.EventSchedulingSystem.repositories.UserRepository;
 import com.example.EventSchedulingSystem.security.JwtUtil;

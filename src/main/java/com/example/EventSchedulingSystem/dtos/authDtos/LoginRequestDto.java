@@ -1,4 +1,4 @@
-package com.example.EventSchedulingSystem.Dtos.authDtos;
+package com.example.EventSchedulingSystem.dtos.authDtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

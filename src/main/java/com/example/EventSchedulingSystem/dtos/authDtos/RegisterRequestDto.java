@@ -1,6 +1,5 @@
-package com.example.EventSchedulingSystem.Dtos.authDtos;
+package com.example.EventSchedulingSystem.dtos.authDtos;
 
-import com.example.EventSchedulingSystem.models.Event;
 import com.example.EventSchedulingSystem.models.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -15,6 +14,17 @@ public class RegisterRequestDto {
     private String password;
     @NotNull(message = "Role cannot be null")
     private User.Role role;
+
+    public RegisterRequestDto(String name,
+                              String email,
+                              String password,
+                              User.Role role){
+
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public User.Role getRole() {
         return role;

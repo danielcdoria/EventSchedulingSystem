@@ -1,4 +1,4 @@
-package com.example.EventSchedulingSystem.Dtos.authDtos;
+package com.example.EventSchedulingSystem.dtos.authDtos;
 
 public class AuthResponseDto {
     private String token;

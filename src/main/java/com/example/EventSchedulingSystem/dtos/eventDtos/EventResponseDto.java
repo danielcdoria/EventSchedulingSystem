@@ -1,4 +1,4 @@
-package com.example.EventSchedulingSystem.Dtos.eventDtos;
+package com.example.EventSchedulingSystem.dtos.eventDtos;
 
 import com.example.EventSchedulingSystem.models.Event;
 

@@ -1,7 +1,7 @@
 package com.example.EventSchedulingSystem.services;
 
-import com.example.EventSchedulingSystem.Dtos.eventDtos.EventRequestDto;
-import com.example.EventSchedulingSystem.Dtos.eventDtos.EventResponseDto;
+import com.example.EventSchedulingSystem.dtos.eventDtos.EventRequestDto;
+import com.example.EventSchedulingSystem.dtos.eventDtos.EventResponseDto;
 import com.example.EventSchedulingSystem.models.Event;
 import com.example.EventSchedulingSystem.models.User;
 import com.example.EventSchedulingSystem.repositories.EventRepository;

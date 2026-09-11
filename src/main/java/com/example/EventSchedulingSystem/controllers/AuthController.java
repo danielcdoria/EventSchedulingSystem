@@ -1,8 +1,8 @@
 package com.example.EventSchedulingSystem.controllers;
 
-import com.example.EventSchedulingSystem.Dtos.authDtos.AuthResponseDto;
-import com.example.EventSchedulingSystem.Dtos.authDtos.LoginRequestDto;
-import com.example.EventSchedulingSystem.Dtos.authDtos.RegisterRequestDto;
+import com.example.EventSchedulingSystem.dtos.authDtos.AuthResponseDto;
+import com.example.EventSchedulingSystem.dtos.authDtos.LoginRequestDto;
+import com.example.EventSchedulingSystem.dtos.authDtos.RegisterRequestDto;
 import com.example.EventSchedulingSystem.services.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
