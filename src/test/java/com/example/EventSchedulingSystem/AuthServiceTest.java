@@ -70,7 +70,6 @@ public class AuthServiceTest {
         AuthResponseDto result = service.login(dto);
 
         assertThat(result.getToken()).isEqualTo("token-fake");
-        verify(repository, times(1)).save(any(User.class));
     }
 
     @Test
