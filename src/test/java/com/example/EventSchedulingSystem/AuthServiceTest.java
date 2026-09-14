@@ -86,7 +86,7 @@ public class AuthServiceTest {
     public void login_whenPassDoesNotMatches_throwsException(){
         LoginRequestDto dto = new LoginRequestDto("daniel@gmail.com", "senha123");
         when(repository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(new User()));
-        when(passwordEncoder.matches(any(String.class), any(String.class) )).thenReturn(false);
+        when(passwordEncoder.matches(any(), any() )).thenReturn(false);
 
         assertThatThrownBy(() -> service.login(dto))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -5,6 +5,7 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "eventId")
     )
-    private List<Event> eventList;
+    private List<Event> eventList = new ArrayList<>();
 
     public enum Role{
         ADMIN, USER
