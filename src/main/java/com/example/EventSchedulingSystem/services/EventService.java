@@ -67,7 +67,7 @@ public class EventService {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Event not found"));
         if (!user.getEventList().contains(event)){
-            throw new IllegalArgumentException("Acess denied");
+            throw new IllegalArgumentException("Acess denied.");
         }
         return convertToDto(event);
     }
