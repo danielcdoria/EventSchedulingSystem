@@ -2,6 +2,7 @@ package com.example.EventSchedulingSystem;
 
 import com.example.EventSchedulingSystem.dtos.eventDtos.EventResponseDto;
 import com.example.EventSchedulingSystem.models.Event;
+import com.example.EventSchedulingSystem.models.User;
 import com.example.EventSchedulingSystem.repositories.EventRepository;
 import com.example.EventSchedulingSystem.repositories.UserRepository;
 import com.example.EventSchedulingSystem.services.EventService;
@@ -46,6 +47,9 @@ public class EventSchedulingTest {
     @Test
     public void findById_whenEventListHasEvent_search(){
         Event event = new Event("Run", "Every day", "Brasil", LocalDateTime.of(2026, 12, 15, 0, 0), Event.EventStatus.IN_PROGRESS);
+        User user = new User();
+        user.getEventList().add(event);
+        when(userRepository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(user));
         when(eventRepository.findById(99L)).thenReturn(Optional.of(event));
 
         EventResponseDto result = service.findById(99L);
@@ -54,8 +58,9 @@ public class EventSchedulingTest {
     }
 
     @Test
-    public void findById_whenEventListDoesNotHaveEvent_ThrowsException(){
-        when(eventRepository.findById(99L)).thenReturn(Optional.empty());
+    public void findById_whenEventListDoesNotHaveEvent_throwsException(){
+        when(userRepository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(new User()));
+        when(eventRepository.findById(99L)).thenReturn(Optional.of(new Event()));
 
         assertThatThrownBy(() -> service.findById(99L))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -64,11 +69,24 @@ public class EventSchedulingTest {
 
     @Test
     public void remove_whenEventListHasEvent_remove(){
+        User user = new User();
         Event event = new Event("Run", "Every day", "Brasil", LocalDateTime.of(2026, 12, 15, 0, 0), Event.EventStatus.IN_PROGRESS);
+        user.getEventList().add(event);
+        when(userRepository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(user));
         when(eventRepository.findById(1L)).thenReturn(Optional.of(event));
 
         String result = service.remove(1L);
 
-        assertThat(result)
+        assertThat(result).isEqualTo("Event was removed successfully!");
+    }
+
+    @Test
+    public void remove_whenEventListDoesNotHasEvent_throwsException(){
+        when(userRepository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(new User()));
+        when(eventRepository.findById(1L)).thenReturn(Optional.of(new Event()));
+
+        assertThatThrownBy(() -> service.remove(1L))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Acess denied.");
     }
 }

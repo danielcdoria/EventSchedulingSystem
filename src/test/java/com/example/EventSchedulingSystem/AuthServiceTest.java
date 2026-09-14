@@ -64,7 +64,7 @@ public class AuthServiceTest {
     public void login_whenPassDoesMatches_savesAndReturnsToken(){
         LoginRequestDto dto = new LoginRequestDto("daniel@gmail.com", "senha123");
         when(repository.findByEmail("daniel@gmail.com")).thenReturn(Optional.of(new User()));
-        when(passwordEncoder.matches(any(String.class), any(String.class))).thenReturn(true);
+        when(passwordEncoder.matches(any(), any())).thenReturn(true);
         when(jwtUtil.generateToken(any())).thenReturn("token-fake");
 
         AuthResponseDto result = service.login(dto);
